@@ -121,13 +121,14 @@ This will create a new `.osmosisd` folder in your HOME directory.
 You can now download the "pregenesis" file for the chain.  This is the genesis file, with the exception that it is missing the gentxs.
 
 ```sh
-curl <url> # TODOs
+cd $HOME/.osmosisd/config/
+curl <url> > pre-genesis.json # TODOs
 ```
 
 ### Create GenTx
 
 ```shell
-myKey=<your key name (the one you specified with `keys add`) or address (agoric1...)>
+myKey=<your key name (the one you specified with `keys add`) or address (osmo1...)>
 myMoniker="<the actual value you want to use as your validator's moniker>"
 chainName=osmosis-1
 
@@ -136,10 +137,9 @@ chainName=osmosis-1
 # fairdrop. Recall only 20% of your fairdrop allocation is liquid at genesis.
 # Also recall that since Osmosis has a min-commission-rate of .05, your commission rate
 # must be greater than or equal to 0.05
-osmosisd gentx $myKey 100uosmo --output-document=gentx.json \
-  --chain-id=$chainName \
+osmosisd gentx $myKey 1000000uosmo --output-document=gentx.json \
   --keyring-dir=$HOME/.osmosisd \
-  --moniker="$myMoniker" \
+  --moniker=$myMoniker \
   --website=<your-node-website> \
   --details=<your-node-details> \
   --commission-rate="0.10" \
