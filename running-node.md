@@ -122,7 +122,6 @@ go: go version go1.16.3 darwin/amd64
 
 If the software version does not match, then please check your `$PATH` to ensure the correct `osmosisd` is running.
 
-
 # Configuring Your Node
 
 ## Check the Network Parameters
@@ -166,7 +165,7 @@ ag-chain-cosmos unsafe-reset-all
 
 Next, we want to adjust the validator configuration to add the peers and seeds from the network config:
 
-```
+```bash
 # Set peers variable to the correct value
 peers=$(jq '.peers | join(",")' < chain.json)
 # Set seeds variable to the correct value.
