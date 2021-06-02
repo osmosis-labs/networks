@@ -150,82 +150,11 @@ osmosisd gentx $myKey 100uosmo --output-document=gentx.json \
 
 The result should look something like this [sample gentx file](https://gist.github.com/michaelfig/c1976099f28899d0077f2e47dfed04c1). _For reference: [gaia gentx docs](https://github.com/cosmos/gaia/blob/main/docs/validators/validator-setup.md#participate-in-genesis-as-a-validator)._
 
-# TODO: Evaluate everything below this point
+## Developing AMMs?
 
-## Check the Network Parameters
-
-To check the  network parameters:
-
-```sh
-# First, get the network config for the current network.
-curl https://testnet.agoric.net/network-config > chain.json
-# Set chain name to the correct value
-chainName=`jq -r .chainName < chain.json`
-# Confirm value: should be something like agorictest-N.
-echo $chainName
-```
-
-**NOTE: If the `$chainName` is out of date, then it means you need to wait until the new Testnet has been bootstrapped before you can continue.**  Please refer to [Network Status](#Network-Status) for when the Testnet corresponding to your software release is scheduled to be live.  Repeat the above step to check if it is ready yet.
-
-## Apply Network Parameters
-
-When the Agoric Testnet is ready in the previous step, you can initialize your validator and download the corresponding genesis file:
-
-If you've never initialized your validator before, use:
-
-```sh
-# Replace <your_moniker> with the public name of your node.
-# NOTE: The `--home` flag (or `AG_CHAIN_COSMOS_HOME` environment variable) determines where the chain state is stored.
-# By default, this is `$HOME/.ag-chain-cosmos`.
-ag-chain-cosmos init --chain-id $chainName <your_moniker>
-```
-
-Once you have an initialized validator, do:
-
-```sh
-# Download the genesis file
-curl https://testnet.agoric.net/genesis.json > $HOME/.ag-chain-cosmos/config/genesis.json 
-# Reset the state of your validator.
-ag-chain-cosmos unsafe-reset-all
-```
-
-### Adjust configuration
-
-Next, we want to adjust the validator configuration to add the peers and seeds from the network config:
-
-```
-# Set peers variable to the correct value
-peers=$(jq '.peers | join(",")' < chain.json)
-# Set seeds variable to the correct value.
-seeds=$(jq '.seeds | join(",")' < chain.json)
-# Confirm values, each should be something like "077c58e4b207d02bbbb1b68d6e7e1df08ce18a8a@178.62.245.23:26656,..."
-echo $peers
-echo $seeds
-# Fix `Error: failed to parse log level`
-sed -i.bak 's/^log_level/# log_level/' $HOME/.ag-chain-cosmos/config/config.toml
-# Replace the seeds and persistent_peers values
-sed -i.bak -e "s/^seeds *=.*/seeds = $seeds/; s/^persistent_peers *=.*/persistent_peers = $peers/" $HOME/.ag-chain-cosmos/config/config.toml
-```
-
-## Creating a Validator
-
-## Creating a gentx
-
-see [[Creating a gentx]]
-
-## Frequently Asked Questions
-
-See [[Validator Guide]]
-
-## Caveats
-
-Note that this is a minimal guide and does not cover more advanced topics like [sentry node architecture](https://github.com/bitfishlabs/cosmos-validator-design) and [double-signing protection](https://github.com/tendermint/kms). It is strongly recommended that any parties considering validating do additional research.
-
-## Developing dApps?
-
-**Note that developing dapps for the Agoric chain does not require you to be a validator.**  If you're primarily looking to develop, please head [here](https://agoric.com/documentation/getting-started/alpha.html) instead.  If not, read on!
+**Note that developing AMMs for the Osmosis chain does not require you to be a validator.**  If you're primarily looking to develop, please head [{TODO AMM DEVELOPER DOCS}](https://github.com/osmosis-labs/osmosis) instead.
 
 ---
 *Disclaimer: This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisors as to those matters. References to any securities or digital assets are for illustrative purposes only and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making investment decisions.*
 
-This work, ["Agoric Validator Guide"](https://github.com/Agoric/agoric-sdk/wiki/Validator-Guide), is a derivative of ["Validating Kava Mainnet"](https://medium.com/kava-labs/validating-kava-mainnet-72fa1b6ea579) by [Kevin Davis](https://medium.com/@kevin_35106), used under [CC BY](http://creativecommons.org/licenses/by/4.0/). "Agoric Validator Guide" is licensed under [CC BY](http://creativecommons.org/licenses/by/4.0/) by [Agoric](https://agoric.com/).  It was extensively modified to make relevant to the Agoric Cosmos Chain.
+This work, ["Osmosis Genesis Validators Guide"](https://github.com/osmosis-labs/networks/genesis-validators.md), is a derivative of ["Agoric Validator Guide"](https://github.com/Agoric/agoric-sdk/wiki/Validator-Guide) used under [CC BY](http://creativecommons.org/licenses/by/4.0/). The Agoric validator gudie is itself is a derivative of ["Validating Kava Mainnet"](https://medium.com/kava-labs/validating-kava-mainnet-72fa1b6ea579) by [Kevin Davis](https://medium.com/@kevin_35106), used under [CC BY](http://creativecommons.org/licenses/by/4.0/). "Osmosis Validator Guide" is licensed under [CC BY](http://creativecommons.org/licenses/by/4.0/) by [Osmosis Labs](https://osmosis.zone/).  It was extensively modified to make relevant to the Osmosis Chain.
