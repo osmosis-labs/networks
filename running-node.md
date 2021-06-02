@@ -11,21 +11,27 @@ to add yourself and any team members.
 
 Some important notes on joining as a genesis validator:
 
-1. We highly recommend only experienced validators who have run on past Cosmos SDK chains and participated have participated in a genesis ceremony before become genesis validators at genesis.
-2. All Osmosis validators should be expected to be ready to participate active operators of the network. As explained in the [Osmosis: A Hub AMM](https://medium.com/osmosis/osmosis-a-hub-amm-c4c12788f94c) post, Osmosis is intended to be a fast iterating platform that regularly add new features and modules through software upgrades.  A precise timeline for upgrade schedules does not exist, but validators are expected to be ready to upgrade the network potentially as frequently as a monthly basis early on. Furthermore, Osmosis intends adopt many new custom low-level features such as threshold decryption, custom bridges, and price oracles. Some of these future upgrades may require validators to run additional software beyond the normal node software, and validators should be prepared to run these.
+1. We highly recommend only experienced validators who have run on past Cosmos SDK chains and have participated in a genesis ceremony before become genesis validators on Osmosis.
+2. All Osmosis validators should be expected to be ready to participate active operators of the network. As explained in the [Osmosis: A Hub AMM](https://medium.com/osmosis/osmosis-a-hub-amm-c4c12788f94c) post, Osmosis is intended to be a fast iterating platform that regularly add new features and modules through software upgrades.  A precise timeline for upgrade schedules does not exist, but validators are expected to be ready to upgrade the network potentially as frequently as a monthly basis early on. Furthermore, Osmosis intends to adopt many new custom low-level features such as threshold decryption, custom bridges, and price oracles. Some of these future upgrades may require validators to run additional software beyond the normal node software, and validators should be prepared to learn and run these.
 3. To be a genesis validator, you must have OSMO at genesis via the fairdrop.  Every address that had ATOMs during the Stargate upgrade of the Cosmos Hub from `cosmoshub-3` to `cosmoshub-4` will have recieve fairdrop OSMO.  You can verify that a Cosmos address has received coins in the fairdrop by inputting an address here: https://airdrop.osmosis.zone/.
-
 
 ## Hardware
 
-You should select an all-purpose server with:
-- 4 or more CPU cores
+We recommend selecting an all-purpose server with:
+
+- 4 or more physical[^1] CPU cores
 - At least 500GB of SSD disk storage
 - At least 16GB of memory
 - At least 100mbps network bandwidth
 
 As the usage of the blockchain grows, the server requirements may increase as well, so you should have a plan for updating your server as well.
 
+[^1]:
+You'll often see 4 distincy physical cores as a machine with 8 logical cores due to hyperthreading.
+The distinct logical cores are helpful for things that are I/O bound,
+but threshold decryption will have validators running significant, non-I/O bound, computation,
+hence the need for physical cores.
+We are not launching with this parallelism, but we include the requirement as we expect parallelism in some form to be needed by validators in a not-so-distant future.
 
 ## Instructions
 
