@@ -18,14 +18,14 @@ Some important notes on joining as a genesis validator:
 
 We recommend selecting an all-purpose server with:
 
-- 4 or more physical[^1] CPU cores
+- 4 or more physical<sup>[1]</sup> CPU cores
 - At least 500GB of SSD disk storage
 - At least 16GB of memory
 - At least 100mbps network bandwidth
 
 As the usage of the blockchain grows, the server requirements may increase as well, so you should have a plan for updating your server as well.
 
-[^1]:
+<sup>[1]</sup>:
 You'll often see 4 distincy physical cores as a machine with 8 logical cores due to hyperthreading.
 The distinct logical cores are helpful for things that are I/O bound,
 but threshold decryption will have validators running significant, non-I/O bound, computation,
@@ -121,7 +121,7 @@ This will create a new `.osmosisd` folder in your HOME directory.
 You can now download the "pregenesis" file for the chain.  This is the genesis file, with the exception that it is missing the gentxs.
 
 ```sh
-curl <url>
+curl <url> # TODOs
 ```
 
 ### Create GenTx
@@ -157,4 +157,4 @@ The result should look something like this [sample gentx file](https://gist.gith
 ---
 *Disclaimer: This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisors as to those matters. References to any securities or digital assets are for illustrative purposes only and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making investment decisions.*
 
-This work, ["Osmosis Genesis Validators Guide"](https://github.com/osmosis-labs/networks/genesis-validators.md), is a derivative of ["Agoric Validator Guide"](https://github.com/Agoric/agoric-sdk/wiki/Validator-Guide) used under [CC BY](http://creativecommons.org/licenses/by/4.0/). The Agoric validator gudie is itself is a derivative of ["Validating Kava Mainnet"](https://medium.com/kava-labs/validating-kava-mainnet-72fa1b6ea579) by [Kevin Davis](https://medium.com/@kevin_35106), used under [CC BY](http://creativecommons.org/licenses/by/4.0/). "Osmosis Validator Guide" is licensed under [CC BY](http://creativecommons.org/licenses/by/4.0/) by [Osmosis Labs](https://osmosis.zone/).  It was extensively modified to make relevant to the Osmosis Chain.
+This work, ["Osmosis Genesis Validators Guide"](https://github.com/osmosis-labs/networks/genesis-validators.md), is a derivative of ["Agoric Validator Guide"](https://github.com/Agoric/agoric-sdk/wiki/Validator-Guide) used under [CC BY](http://creativecommons.org/licenses/by/4.0/). The Agoric validator gudie is itself is a derivative of ["Validating Kava Mainnet"](https://medium.com/kava-labs/validating-kava-mainnet-72fa1b6ea579) by [Kevin Davis](https://medium.com/@kevin_35106), used under [CC BY](http://creativecommons.org/licenses/by/4.0/). "Osmosis Validator Guide" is licensed under [CC BY](http://creativecommons.org/licenses/by/4.0/) by [Osmosis Labs](https://osmosis.zone/).  It was extensively modified to be relevant to the Osmosis Chain.
