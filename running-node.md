@@ -1,9 +1,35 @@
 
-# Setting Up an Osmosis Validator
+# Setting Up a Genesis Osmosis Validator
+
+Thank you for becoming a genesis validator on Osmosis!  This guide will provide instructions on setting up
+a node, submitting a gentx, and other tasks needed to participate in the launch of the Osmosis mainnet.
+
+The primary point of communication for the genesis process and future updates will be the #validators
+channel on the [Osmosis Discord](https://discord.gg/tPayMvaTT3). This channel is private by default in order
+to keep it free of spam and unnecessary noise.  To join the channel, please send a message to @Meow#6669
+to add yourself and any team members.
+
+Some important notes on joining as a genesis validator:
+
+1. We highly recommend only experienced validators who have run on past Cosmos SDK chains and participated have participated in a genesis ceremony before become genesis validators at genesis.
+2. All Osmosis validators should be expected to be ready to participate active operators of the network. As explained in the [Osmosis: A Hub AMM](https://medium.com/osmosis/osmosis-a-hub-amm-c4c12788f94c) post, Osmosis is intended to be a fast iterating platform that regularly add new features and modules through software upgrades.  A precise timeline for upgrade schedules does not exist, but validators are expected to be ready to upgrade the network potentially as frequently as a monthly basis early on. Furthermore, Osmosis intends adopt many new custom low-level features such as threshold decryption, custom bridges, and price oracles. Some of these future upgrades may require validators to run additional software beyond the normal node software, and validators should be prepared to run these.
+3. To be a genesis validator, you must have OSMO at genesis via the fairdrop.  Every address that had ATOMs during the Stargate upgrade of the Cosmos Hub from `cosmoshub-3` to `cosmoshub-4` will have recieve fairdrop OSMO.  You can verify that a Cosmos address has received coins in the fairdrop by inputting an address here: https://airdrop.osmosis.zone/.
+
 
 ## Hardware
 
-see [[Node Hardware Requirements]]
+You should select an all-purpose server with:
+- 4 or more CPU cores
+- At least 500GB of SSD disk storage
+- At least 16GB of memory
+- At least 100mbps network bandwidth
+
+As the usage of the blockchain grows, the server requirements may increase as well, so you should have a plan for updating your server as well.
+
+
+## Instructions
+
+These instructions are written targeting an Ubuntu 20.04 system.  Relevant changes to commands should be made depending on the OS/architecture you are running on.
 
 ## Install Go
 
@@ -38,6 +64,35 @@ go version
 
 ```sh
 # Clone osmosisd repo and checkout correct branch
+git clone https://github.com/osmosis-labs/osmosis -b main #todo fix branch
+cd osmosis
+
+# Build and install osmosisd
+make build
+make install
+```
+
+To verify that `osmosisd` has been installed correctly, check especially the `version` matches the software version provided here:
+
+```sh
+osmosisd version --long
+
+name: osmosis
+server_name: osmosisd
+version: '"0.0.1"'
+commit: 985e04c1e18ef2d130801a621de4ba903e4e9191
+build_tags: netgo,ledger
+go: go version go1.16.3 darwin/amd64
+```
+
+If the software version does not match, then please check your `$PATH` to ensure the correct `osmosisd` is running.
+
+## Install and setup cosmovisor
+
+`osmosisd` is the node software for running the osmosis chain.  Install the proper version using these commands:
+
+```sh
+# Clone osmosisd repo and checkout correct branch
 git clone https://github.com/osmosis-labs/osmosis -b main
 cd osmosis
 
@@ -60,6 +115,7 @@ go: go version go1.16.3 darwin/amd64
 ```
 
 If the software version does not match, then please check your `$PATH` to ensure the correct `osmosisd` is running.
+
 
 # Configuring Your Node
 

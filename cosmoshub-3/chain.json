@@ -1,13 +1,13 @@
 {
-    "status": "upcoming",
+    "status": "killed",
     "network_type": "mainnet",
-    "chain_id": "osmosis-1",
-    "genesis_url": "",
-    "bech32_prefix": "osmo",
+    "chain_id": "cosmoshub-3",
+    "genesis_url": "https://github.com/cosmos/mainnet/raw/master/genesis.json",
+    "bech32_prefix": "cosmos",
     "codebase": {
-        "git_repo": "github.com/osmosis-labs/osmosis",
-        "git_version": "main",
-        "go_version": "1.16.4",
+        "git_repo": "https://github.com/cosmos/gaia",
+        "git_version": "v2.0.14",
+        "go_version": "1.13.5",
         "binaries": {
             "linux/amd64": ""
         }
