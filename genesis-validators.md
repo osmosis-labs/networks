@@ -111,7 +111,7 @@ osmosisd config chain-id osmosis-1
 Now that your software is installed, you can initialize the directory for osmosisd.
 
 ```sh
-osmosisd init <your_moniker>
+osmosisd init --chain-id=osmosis-1 <your_moniker>
 ```
 
 This will create a new `.osmosisd` folder in your HOME directory.
@@ -121,22 +121,34 @@ This will create a new `.osmosisd` folder in your HOME directory.
 You can now download the "pregenesis" file for the chain.  This is the genesis file, with the exception that it is missing the gentxs.
 
 ```sh
-osmosisd init --chain-id=osmosis-1 <your_moniker>
+curl <url>
 ```
 
------
+### Create GenTx
 
+```shell
+myKey=<your key name (the one you specified with `keys add`) or address (agoric1...)>
+myMoniker="<the actual value you want to use as your validator's moniker>"
+chainName=osmosis-1
 
-## Increase Maximum Open Files
-
-`osmosisd` can open more than 1024 files (which is default maximum on Ubuntu) concurrently. You will want to increase this limit.
-
-Modify `/etc/security/limits.conf` to raise the `nofile` capability.
-
+# Create the gentx.
+# Note, your gentx will be rejected if you use an amount greater than what you have as liquid from the
+# fairdrop. Recall only 20% of your fairdrop allocation is liquid at genesis.
+# Also recall that since Osmosis has a min-commission-rate of .05, your commission rate
+# must be greater than or equal to 0.05
+osmosisd gentx $myKey 100uosmo --output-document=gentx.json \
+  --chain-id=$chainName \
+  --keyring-dir=$HOME/.osmosisd \
+  --moniker="$myMoniker" \
+  --website=<your-node-website> \
+  --details=<your-node-details> \
+  --commission-rate="0.10" \
+  --commission-max-rate="0.20" \
+  --commission-max-change-rate="0.01" \
+  --min-self-delegation="1"
 ```
-*                soft    nofile          65535
-*                hard    nofile          65535
-```
+
+The result should look something like this [sample gentx file](https://gist.github.com/michaelfig/c1976099f28899d0077f2e47dfed04c1). _For reference: [gaia gentx docs](https://github.com/cosmos/gaia/blob/main/docs/validators/validator-setup.md#participate-in-genesis-as-a-validator)._
 
 # TODO: Evaluate everything below this point
 
@@ -195,205 +207,7 @@ sed -i.bak 's/^log_level/# log_level/' $HOME/.ag-chain-cosmos/config/config.toml
 sed -i.bak -e "s/^seeds *=.*/seeds = $seeds/; s/^persistent_peers *=.*/persistent_peers = $peers/" $HOME/.ag-chain-cosmos/config/config.toml
 ```
 
-# Syncing Your Node
-
-To sync our node, we will use `systemd`, which manages the Agoric Cosmos daemon and automatically restarts it in case of failure. To use `systemd`, we will create a service file:
-
-```sh
-sudo tee <<EOF >/dev/null /etc/systemd/system/ag-chain-cosmos.service
-[Unit]
-Description=Agoric Cosmos daemon
-After=network-online.target
-
-[Service]
-User=$USER
-ExecStart=$HOME/go/bin/ag-chain-cosmos start --log_level=warn
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=4096
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-# Check the contents of the file, especially User, Environment and ExecStart lines
-cat /etc/systemd/system/ag-chain-cosmos.service
-```
-
-If you decide to run from the console, you can just do the following:
-
-```sh
-ag-chain-cosmos start --log_level=warn
-```
-
-To start syncing:
-
-```sh
-# Start the node
-sudo systemctl enable ag-chain-cosmos
-sudo systemctl daemon-reload
-sudo systemctl start ag-chain-cosmos
-```
-
-To check on the status of syncing:
-
-```sh
-ag-cosmos-helper status 2>&1 | jq .SyncInfo
-```
-
-If this command fails with `parse error: ...`, then try just:
-
-```sh
-ag-cosmos-helper status
-```
-
-## `ag-cosmos-helper status` Errors
-
-If `ag-cosmos-helper status` fails with:
-```
-Error: failed to parse log level (main:info,state:info,statesync:info,*:error): Unknown Level String: 'main:info,state:info,statesync:info,*:error', defaulting to NoLevel
-```
-
-then run:
-```sh
-sed -i.bak 's/^log_level/# log_level/' $HOME/.ag-cosmos-helper/config/config.toml
-```
-
-If `ag-cosmos-helper status` fails with:
-```
-ERROR: Status: Post http://localhost:26657: dial tcp [::1]:26657: connect: connection refused
-```
-
-then you should run `sudo journalctl -u ag-chain-cosmos` and diagnose the failure.
-
-## Status output
-
-If the status command succeeds, this will give output like:
-
-```json
-{
-  "latest_block_hash": "6B87878277C9164006F2E7C544A27C2A4010D0107F436645BFE35BAEBE50CDF2",
-  "latest_app_hash": "010EF4A62021F88D097591D6A31906CF9E5FA4359DC523B535E3C411DC6010B1",
-  "latest_block_height": "233053",
-  "latest_block_time": "2020-01-31T22:12:45.006715122Z",
-  "catching_up": true
-}
-```
-
-The main thing to watch is that the block height is increasing. Once you are caught up with the chain, `catching_up` will become false. At that point, you can start using your node to create a validator.
-
 ## Creating a Validator
-
-**For a chain restart, skip to 
-
-**If you are upgrading, [skip creating a new operator key](#tap-the-faucet).**
-
-## If you don't have an operator key
-
-Are you **really** sure you don't have an operator key?  You should try [recovering it from your mnemonic](#how-do-i-recover-a-key).
-
-First, create a wallet, which will give you a private key / public key pair for your node.
-
-```sh
-# Replace <your-key-name> with a name for your operator key that you will remember
-ag-cosmos-helper keys add <your-key-name>
-# To see a list of wallets on your node
-ag-cosmos-helper keys list
-```
-
-**NOTE: Be sure to write down the mnemonic for your wallet and store it securely. Losing your mnemonic could result in the irrecoverable loss of Agoric tokens.  Also, recovering pre-`testnet-3` keys from their mnemonic has changed.  Please refer to the [software release notes](/Agoric/agoric-sdk/tree/master/packages/cosmic-swingset/NEWS.md).**
-
-### Tap the Faucet
-
-To request tokens, go to the [Agoric Discord server](https://agoric.com/discord) `#testnet-faucet` channel and send the following chat message with your generated Agoric address (the `address: agoric1...` address, not the `pubkey: agoricpub1...` public key):
-
-```
-!faucet delegate agoric1...
-```
-
-When you get the ✅ the `uagstake` tokens have been sent, and you can view the tokens in your account.
-
-## Check your balance
-
-```sh
-# View the tokens ("coins") currently deposited in your operator account.
-# The "uagstake" tokens are millionths of Agoric staking tokens
-ag-cosmos-helper query bank balances `ag-cosmos-helper keys show -a <your-key-name>`
-```
-
-Verify that you have at least 1 agstake (*1000000uagstake*).
-
-## Catching up
-
-Your node must have caught up with the rest of the chain before you can create the validator.  Here is a shell script loop that will wait for that to happen:
-
-```sh
-while sleep 5; do
-  sync_info=`ag-cosmos-helper status 2>&1 | jq .SyncInfo`
-  echo "$sync_info"
-  if test `echo "$sync_info" | jq -r .catching_up` == false; then
-    echo "Caught up"
-    break
-  fi
-done
-```
-
-The above loop will poll your node every 5 seconds, displaying the `sync_info`.  When you have caught up, it will display a `Caught up` message and stop the loop.
-
-## Get the validator public key
-
-**NOTE: The following command will give incorrect values** if you don't run it under the same machine and user that is currently running your validator:
-
-```sh
-# Get the public key from the current node.
-ag-chain-cosmos tendermint show-validator
-```
-
-This will display something like `agoricvalconspub1...`. Paste this key somewhere you can access it in the below step.
-
-## Submit the create-validator transaction
-
-You can see the options for creating a validator:
-
-```sh
-ag-cosmos-helper tx staking create-validator -h
-```
-
-An example of creating a validator with 50 agstake self-delegation and 10% commission.  You need the correct `--pubkey=` flag as described in the previous section, or you will **lose your staking tokens**:
-
-```sh
-# Set the chainName value again
-chainName=`curl https://testnet.agoric.net/network-config | jq -r .chainName`
-# Confirm value: should be something like agoricdev-N
-echo $chainName
-# Replace <key_name> with the key you created previously
-ag-cosmos-helper tx staking create-validator \
-  --amount=50000000uagstake \
-  --broadcast-mode=block \
-  --pubkey=<your-agoricvalconspub1-key> \
-  --moniker=<your-node-name> \
-  --website=<your-node-website> \
-  --details=<your-node-details> \
-  --commission-rate="0.10" \
-  --commission-max-rate="0.20" \
-  --commission-max-change-rate="0.01" \
-  --min-self-delegation="1" \
-  --from=<your-key-name> \
-  --chain-id=$chainName \
-  --gas=auto \
-  --gas-adjustment=1.4
-```
-
-To check on the status of your validator:
-
-```sh
-ag-cosmos-helper status 2>&1 | jq .ValidatorInfo
-```
-
-# Next steps
-
-After you have completed this guide, your validator should be up and ready to receive delegations. Note that only the top 100 validators by weighted stake (self-delegations + other delegations) are eligible for block rewards. To view the current validator list, check out an Agoric block explorer (in the [Network Status section](#Network-Status)).
-
 
 ## Creating a gentx
 

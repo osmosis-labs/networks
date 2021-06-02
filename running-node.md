@@ -399,3 +399,14 @@ Note that this is a minimal guide and does not cover more advanced topics like [
 *Disclaimer: This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisors as to those matters. References to any securities or digital assets are for illustrative purposes only and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making investment decisions.*
 
 This work, ["Agoric Validator Guide"](https://github.com/Agoric/agoric-sdk/wiki/Validator-Guide), is a derivative of ["Validating Kava Mainnet"](https://medium.com/kava-labs/validating-kava-mainnet-72fa1b6ea579) by [Kevin Davis](https://medium.com/@kevin_35106), used under [CC BY](http://creativecommons.org/licenses/by/4.0/). "Agoric Validator Guide" is licensed under [CC BY](http://creativecommons.org/licenses/by/4.0/) by [Agoric](https://agoric.com/).  It was extensively modified to make relevant to the Agoric Cosmos Chain.
+
+## Increase Maximum Open Files
+
+`osmosisd` can open more than 1024 files (which is default maximum on Ubuntu) concurrently. You will want to increase this limit.
+
+Modify `/etc/security/limits.conf` to raise the `nofile` capability.
+
+```conf
+*                soft    nofile          65535
+*                hard    nofile          65535
+```
