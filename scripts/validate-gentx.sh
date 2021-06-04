@@ -48,8 +48,8 @@ else
 
     echo "...........Init Osmosis.............."
 
-    git clone https://github.com/osmosis-lab/osmosis
-    cd 
+    git clone https://github.com/osmosis-labs/osmosis
+    cd osmosis
     git checkout launch-gentxs
     make build
     chmod +x ./build/osmosisd
