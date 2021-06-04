@@ -84,15 +84,15 @@ make install
 
 ### Verify Your Installation
 
-Verify that everything is OK. If you get something like the following, you've successfully installed Osmosis on your system.
+Verify that everything is OK. If you get something *like* the following, you've successfully installed Osmosis on your system.
 
 ```sh
 osmosisd version --long
 
 name: osmosis
 server_name: osmosisd
-version: '"0.0.1"' # TODO
-commit: 985e04c1e18ef2d130801a621de4ba903e4e9191
+version: '"0.0.1"'
+commit: a86a1725660d6847602f74d71c01b1e428d8a228
 build_tags: netgo,ledger
 go: go version go1.16.3 darwin/amd64
 ```
@@ -123,7 +123,7 @@ You can now download the "pregenesis" file for the chain.  This is the genesis f
 
 ```sh
 cd $HOME/.osmosisd/config/
-curl [TODO] > $HOME/.osmosisd/config/genesis.json
+curl https://raw.githubusercontent.com/osmosis-labs/networks/main/osmosis-1/pregenesis.json?token=AAHPCKIHIEU7B37GK5Z2YP3AXGXRI > $HOME/.osmosisd/config/genesis.json
 ```
 
 ### Import Validator Key
