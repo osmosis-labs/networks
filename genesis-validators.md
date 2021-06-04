@@ -66,12 +66,12 @@ go version
 
 ### Get Osmosis Source Code
 
-Use git to retrieve Osmosis source code from the [official repo](https://github.com/osmosis-labs/osmosis), and checkout the `launch-gentxs` tag, which contains the latest stable release.
+Use git to retrieve Osmosis source code from the [official repo](https://github.com/osmosis-labs/osmosis), and checkout the `gentx-launch` tag, which contains the latest stable release.
 
 ```sh
 git clone https://github.com/osmosis-labs/osmosis
 cd osmosis
-git checkout launch-gentxs
+git checkout gentx-launch
 ```
 
 ## Install osmosisd
@@ -123,7 +123,7 @@ You can now download the "pregenesis" file for the chain.  This is the genesis f
 
 ```sh
 cd $HOME/.osmosisd/config/
-curl https://raw.githubusercontent.com/osmosis-labs/networks/main/osmosis-1/pregenesis.json?token=AAHPCKIHIEU7B37GK5Z2YP3AXGXRI > $HOME/.osmosisd/config/genesis.json
+curl https://raw.githubusercontent.com/osmosis-labs/networks/main/osmosis-1/pregenesis.json > $HOME/.osmosisd/config/genesis.json
 ```
 
 ### Import Validator Key
