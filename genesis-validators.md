@@ -119,7 +119,7 @@ This will create a new `.osmosisd` folder in your HOME directory.
 
 ### Download Pregenesis File
 
-You can now download the "pregenesis" file for the chain.  This is the genesis file without the gentxs.
+You can now download the "pregenesis" file for the chain.  This is a genesis file with the chain-id and airdrop balances.
 
 ```sh
 cd $HOME/.osmosisd/config/
