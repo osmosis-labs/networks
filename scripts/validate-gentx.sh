@@ -107,7 +107,7 @@ else
 
     echo "...checking network status.."
 
-    ./build/osmosisd status --node http://localhost:26657
+    ./build/osmosisd status --node "tcp://localhost:26657"
 
     echo "...Cleaning the stuff..."
     killall osmosisd >/dev/null 2>&1
