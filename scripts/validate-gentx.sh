@@ -103,7 +103,7 @@ else
     echo "..........Starting node......."
     ./build/osmosisd start --home $OSMOSIS_HOME &
 
-    sleep 5s
+    sleep 1800s
 
     echo "...checking network status.."
 
