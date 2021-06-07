@@ -50,7 +50,7 @@ else
 
     git clone https://github.com/osmosis-labs/osmosis
     cd osmosis
-    git checkout launch-gentxs
+    git checkout gentx-launch
     make build
     chmod +x ./build/osmosisd
 
