@@ -149,7 +149,7 @@ into `osmosisd` using the following steps.
 1. Export the key from an existing keystore.  In this example we will use gaiad.  When prompted, input a password to encrypt the key file with.
 
 ```sh
-osmosisd keys export <original_key_name>
+gaiad keys export <original_key_name>
 ```
 
 2. Copy the output starting from the line that says `BEGIN TENDERMINT PRIVATE KEY` and ending with the line that says `END TENDERMINT PRIVATE KEY` into a txt file somewhere on your machine.
@@ -166,7 +166,7 @@ To import a key stored on a ledger, the process will be exactly the same as addi
 You can connect a Ledger device with the Cosmos app open and then run:
 
 ```sh
-gaiad keys add <key_name> --ledger
+osmosisd keys add <key_name> --ledger
 ```
 
 and follow any prompts.
