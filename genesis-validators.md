@@ -236,7 +236,7 @@ To submit your GenTx for inclusion in the chain, please upload it to the [github
 
 To upload the your genesis file, please follow these steps:
 
-1. Rename the gentx file just generated to gentx-{your-moniker}.json (please do not have any spaces in the file name)
+1. Rename the gentx file just generated to gentx-{your-moniker}.json (please do not have any spaces or special characters in the file name)
 2. Fork this repo by going to https://github.com/osmosis-labs/networks, clicking on fork, and choose your account (if multiple).
 3. Clone your copy of the fork to your local machine
 ```sh
