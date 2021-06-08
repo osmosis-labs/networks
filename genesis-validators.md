@@ -149,7 +149,7 @@ into `osmosisd` using the following steps.
 1. Export the key from an existing keystore.  In this example we will use gaiad.  When prompted, input a password to encrypt the key file with.
 
 ```sh
-gaiad keys export <original_key_name>
+osmosisd keys export <original_key_name>
 ```
 
 2. Copy the output starting from the line that says `BEGIN TENDERMINT PRIVATE KEY` and ending with the line that says `END TENDERMINT PRIVATE KEY` into a txt file somewhere on your machine.
