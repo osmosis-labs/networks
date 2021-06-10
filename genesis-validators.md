@@ -92,7 +92,7 @@ osmosisd version --long
 name: osmosis
 server_name: osmosisd
 version: '"0.0.1"'
-commit: a86a1725660d6847602f74d71c01b1e428d8a228
+commit: 197171b8fcb364bd2c5c2fbb2532eab3f5e8517c
 build_tags: netgo,ledger
 go: go version go1.16.3 darwin/amd64
 ```
