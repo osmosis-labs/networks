@@ -261,6 +261,7 @@ git push origin master
 7. Let us know on Discord when you've completed this process!
 8. Stay tuned for next steps which will be distributed after June 11
 
+---
 
 # Part 2
 
@@ -317,7 +318,7 @@ osmosisd version --long
 name: osmosis
 server_name: osmosisd
 version: '"1.0.0"'
-commit: TODO
+commit: ff566c42c50c42c59d3d0c653a50159b2f80d8fb
 build_tags: netgo,ledger
 go: go version go1.16.3 darwin/amd64
 ```
