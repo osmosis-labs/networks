@@ -298,12 +298,12 @@ These examples are written targeting an Ubuntu 20.04 system.  Relevant changes t
 
 For the gentx creation, we used the `gentx-launch` branch of the [Osmosis codebase](https://github.com/osmosis-labs/osmosis).
 
-For launch, please update to the `v1.0.0` tag and rebuild your binaries.
+For launch, please update to the `v1.0.1` tag and rebuild your binaries. (The `v1.0.0` tag is also fine, `v1.0.1` just fixes a bug in displaying the version. The state machine for the two versions are identical)
 
 ```sh
 git clone https://github.com/osmosis-labs/osmosis
 cd osmosis
-git checkout v1.0.0
+git checkout v1.0.1
 
 make install
 ```
@@ -317,8 +317,8 @@ osmosisd version --long
 
 name: osmosis
 server_name: osmosisd
-version: '"1.0.0"'
-commit: ff566c42c50c42c59d3d0c653a50159b2f80d8fb
+version: '"1.0.1"'
+commit: a20dab6d638da0883f9fbb9f5bd222affb8700ad
 build_tags: netgo,ledger
 go: go version go1.16.3 darwin/amd64
 ```
@@ -463,7 +463,6 @@ sudo -S systemctl start osmosisd
 ## Conclusion
 
 See you all at launch!  Join the discord!
-
 
 ---
 *Disclaimer: This content is provided for informational purposes only, and should not be relied upon as legal, business, investment, or tax advice. You should consult your own advisors as to those matters. References to any securities or digital assets are for illustrative purposes only and do not constitute an investment recommendation or offer to provide investment advisory services. Furthermore, this content is not directed at nor intended for use by any investors or prospective investors, and may not under any circumstances be relied upon when making investment decisions.*
