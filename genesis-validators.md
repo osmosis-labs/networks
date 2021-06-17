@@ -348,7 +348,7 @@ If you choose to use cosmovisor, please continue with these instructions:
 Cosmovisor is currently located in the Cosmos SDK repo, so you will need to download that, build cosmovisor, and add it
 to you PATH.
 
-```
+```sh
 git clone https://github.com/cosmos/cosmos-sdk
 cd cosmos-sdk
 git checkout v0.42.5
@@ -359,7 +359,7 @@ cd $HOME
 
 After this, you must make the necessary folders for cosmosvisor in your daemon home directory (~/.osmosisd).
 
-```
+```sh
 mkdir -p ~/.osmosisd
 mkdir -p ~/.osmosisd/cosmovisor
 mkdir -p ~/.osmosisd/cosmovisor/genesis
@@ -387,7 +387,7 @@ This will create a new `.osmosisd` folder in your HOME directory.
 You can now download the "genesis" file for the chain.  It is pre-filled with the entire genesis state and gentxs.
 
 ```sh
-curl https://raw.githubusercontent.com/osmosis-labs/networks/main/osmosis-1/genesis.json > ~/.osmosisd/config/genesis.json
+curl https://media.githubusercontent.com/media/osmosis-labs/networks/main/osmosis-1/genesis.json > ~/.osmosisd/config/genesis.json
 ```
 
 ### Updates to config files
@@ -420,29 +420,36 @@ osmosisd unsafe-reset-all
 
 Now that everything is setup and ready to go, you can start your node.
 
-```
-osmosisd start
+```sh
+cosmovisor start
 ```
 
-You will likely need some way to keep the process always running.  If you're on linux, you can do this by creating a 
+You will need some way to keep the process always running.  If you're on linux, you can do this by creating a 
 service.
 
-```
-DAEMON_PATH=$(which osmosisd)
-
-echo "[Unit]
-Description=osmosisd daemon
+```sh
+sudo tee /etc/systemd/system/osmosisd.service > /dev/null <<EOF  
+[Unit]
+Description=Osmosis Daemon
 After=network-online.target
+
 [Service]
-User=${USER}
-ExecStart=${DAEMON_PATH} start
+User=$USER
+ExecStart=$(which cosmovisor) start
 Restart=always
 RestartSec=3
 LimitNOFILE=4096
+
+Environment="DAEMON_HOME=$HOME/.osmosisd"
+Environment="DAEMON_NAME=osmosisd"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+
 [Install]
 WantedBy=multi-user.target
-" >osmosisd.service
+EOF
 ```
+
 
 Then update and start the node
 
