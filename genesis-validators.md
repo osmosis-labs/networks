@@ -377,9 +377,9 @@ source ~/.profile
 ```
 
 Finally, you should copy the osmosisd binary into the cosmovisor/genesis folder.
+```
 cp $GOPATH/bin/osmosisd ~/.osmosisd/cosmovisor/genesis/bin
-
-This will create a new `.osmosisd` folder in your HOME directory.
+```
 
 ### Download Genesis File
 
@@ -412,7 +412,7 @@ on better mechanisms for this process.  Here's to interchain UX finally becoming
 There shouldn't be any chain database yet, but in case there is for some reason, you should reset it.
 
 ```sh
-osmosisd unsafe-reset-all
+cosmovisor unsafe-reset-all
 ```
 
 ### Start your node
@@ -420,7 +420,7 @@ osmosisd unsafe-reset-all
 Now that everything is setup and ready to go, you can start your node.
 
 ```
-osmosisd start
+cosmovisor start
 ```
 
 You will likely need some way to keep the process always running.  If you're on linux, you can do this by creating a 
