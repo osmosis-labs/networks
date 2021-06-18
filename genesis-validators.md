@@ -454,10 +454,14 @@ EOF
 Then update and start the node
 
 ```sh
-sudo mv osmosisd.service /lib/systemd/system/osmosisd.service
 sudo -S systemctl daemon-reload
 sudo -S systemctl enable osmosisd
 sudo -S systemctl start osmosisd
+```
+
+You can check the status with:
+```sh
+systemctl status osmosisd
 ```
 
 ## Conclusion
