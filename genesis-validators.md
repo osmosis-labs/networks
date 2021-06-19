@@ -378,7 +378,9 @@ source ~/.profile
 ```
 
 Finally, you should copy the osmosisd binary into the cosmovisor/genesis folder.
+```
 cp $GOPATH/bin/osmosisd ~/.osmosisd/cosmovisor/genesis/bin
+```
 
 This will create a new `.osmosisd` folder in your HOME directory.
 
