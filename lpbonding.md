@@ -118,3 +118,5 @@ Putting it all together now, you can bond your LP shares using the following com
 Example would be:
 
 `osmosisd tx lockup lock-tokens 500000000000000000000gamm/pool/4 --duration 86417s --from osmo10q97szll5adkm4lzzfqvnwaxmku0qmcfv96u2z --gas 3000000 --chain-id osmosis-1 --node=tcp://178.128.154.17:26657`
+
+Please note that you may need to raise the gas limits depending on the network conditions, until a software upgrade reducing the gas for bonding LP shares is deployed on mainnet.
