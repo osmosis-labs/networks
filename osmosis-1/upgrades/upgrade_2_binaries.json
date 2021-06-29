@@ -1,0 +1,8 @@
+{
+    "binaries": {
+        "linux/amd64": "https://github.com/osmosis-labs/osmosis/releases/download/v2.0.0-rc0/osmosisd-2.0.0-rc0-linux-amd64",
+        "linux/arm64": "https://github.com/osmosis-labs/osmosis/releases/download/v2.0.0-rc0/osmosisd-2.0.0-rc0-linux-arm64",
+        "darwin/amd64": "https://github.com/osmosis-labs/osmosis/releases/download/v2.0.0-rc0/osmosisd-2.0.0-rc0-darwin-amd64",
+        "windows/amd64": "https://github.com/osmosis-labs/osmosis/releases/download/v2.0.0-rc0/osmosisd-2.0.0-rc0-windows-amd64.exe"
+    }
+}
