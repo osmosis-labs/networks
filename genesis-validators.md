@@ -374,7 +374,7 @@ your `.profile` so it is automatically set in every session.
 echo "# Setup Cosmovisor" >> ~/.profile
 echo "export DAEMON_NAME=osmosisd" >> ~/.profile
 echo "export DAEMON_HOME=$HOME/.osmosisd" >> ~/.profile
-echo 'export PATH="$DAEMON_HOME/cosmovisor:$PATH"' >> ~/.profile
+echo 'export PATH="$DAEMON_HOME/cosmovisor/current/bin:$PATH"' >> ~/.profile
 source ~/.profile
 ```
 
