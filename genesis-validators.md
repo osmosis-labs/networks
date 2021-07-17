@@ -440,7 +440,7 @@ User=$USER
 ExecStart=$(which cosmovisor) start
 Restart=always
 RestartSec=3
-LimitNOFILE=4096
+LimitNOFILE=infinity
 
 Environment="DAEMON_HOME=$HOME/.osmosisd"
 Environment="DAEMON_NAME=osmosisd"
