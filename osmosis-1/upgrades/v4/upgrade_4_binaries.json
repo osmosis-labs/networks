@@ -1,0 +1,8 @@
+{
+    "binaries": {
+        "linux/amd64": "https://github.com/osmosis-labs/osmosis/releases/download/v4-TBD",
+        "linux/arm64": "https://github.com/osmosis-labs/osmosis/releases/download/v4-TBD",
+        "darwin/amd64": "https://github.com/osmosis-labs/osmosis/releases/download/v4-TBD",
+        "windows/amd64": "https://github.com/osmosis-labs/osmosis/releases/download/v4-TBD"
+    }
+}
