@@ -1,8 +1,8 @@
 {
     "binaries": {
-        "linux/amd64": "https://github.com/osmosis-labs/osmosis/releases/download/v4-TBD",
-        "linux/arm64": "https://github.com/osmosis-labs/osmosis/releases/download/v4-TBD",
-        "darwin/amd64": "https://github.com/osmosis-labs/osmosis/releases/download/v4-TBD",
-        "windows/amd64": "https://github.com/osmosis-labs/osmosis/releases/download/v4-TBD"
+        "linux/amd64": "https://github.com/osmosis-labs/networks/raw/unity/v4/osmosis-1/upgrades/v4/artifacts/osmosisd-4.0.0-rc0-linux-amd64?checksum=sha256:383efccd4e4ec1278a2c5545590e954dc3c3e0fb329db1628373081a0ff3a06e",
+        "linux/arm64": "https://github.com/osmosis-labs/networks/raw/unity/v4/osmosis-1/upgrades/v4/artifacts/osmosisd-4.0.0-rc0-linux-arm64?checksum=sha256:abd30cf174413abdd51fcc6d8211823415a306327e2fdfeeaa60ad77c61a98c4",
+        "darwin/amd64": "https://github.com/osmosis-labs/networks/raw/unity/v4/osmosis-1/upgrades/v4/artifacts/osmosisd-4.0.0-rc0-darwin-amd64?checksum=sha256:169455f02766d8a7c688751589e7f3e139ed5fdc30aa8761517010fc03f2cb05",
+        "windows/amd64": "https://github.com/osmosis-labs/networks/raw/unity/v4/osmosis-1/upgrades/v4/artifacts/osmosisd-4.0.0-rc0-windows-amd64.exe?checksum=sha256:342cdd54da1313ffe524b95aef7870f08bac45e2a43dc2777b28798b48caa103"
     }
 }
