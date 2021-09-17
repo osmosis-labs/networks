@@ -1,0 +1,15 @@
+App: osmosisd
+Version: 4.0.0-rc0
+Commit: 3025a89591b75090a70ffaaad92b63185c569da0
+Files:
+ 2f733018a7e9ed8b47db1a18ee0a1487  osmosisd-4.0.0-rc0-darwin-amd64
+ d1a782d6eb3c2f6c124c75f4c3f42e3f  osmosisd-4.0.0-rc0-linux-amd64
+ 79cea21713021c0ff3d491fa56e8e383  osmosisd-4.0.0-rc0-linux-arm64
+ f279be35bda9d46d03e5a8440ea5c498  osmosisd-4.0.0-rc0-windows-amd64.exe
+ 1fd12896c56064aa452bed0ab3f401b7  osmosisd-4.0.0-rc0.tar.gz
+Checksums-Sha256:
+ 169455f02766d8a7c688751589e7f3e139ed5fdc30aa8761517010fc03f2cb05  osmosisd-4.0.0-rc0-darwin-amd64
+ 383efccd4e4ec1278a2c5545590e954dc3c3e0fb329db1628373081a0ff3a06e  osmosisd-4.0.0-rc0-linux-amd64
+ abd30cf174413abdd51fcc6d8211823415a306327e2fdfeeaa60ad77c61a98c4  osmosisd-4.0.0-rc0-linux-arm64
+ 342cdd54da1313ffe524b95aef7870f08bac45e2a43dc2777b28798b48caa103  osmosisd-4.0.0-rc0-windows-amd64.exe
+ c5b33a457a37ab5591e90f63db05feafd39dcacdf3ec8b7f814749555b3d627d  osmosisd-4.0.0-rc0.tar.gz
