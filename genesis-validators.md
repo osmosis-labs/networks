@@ -374,15 +374,14 @@ your `.profile` so it is automatically set in every session.
 echo "# Setup Cosmovisor" >> ~/.profile
 echo "export DAEMON_NAME=osmosisd" >> ~/.profile
 echo "export DAEMON_HOME=$HOME/.osmosisd" >> ~/.profile
+echo 'export PATH="$DAEMON_HOME/cosmovisor/current/bin:$PATH"' >> ~/.profile
 source ~/.profile
 ```
 
-Finally, you should copy the osmosisd binary into the cosmovisor/genesis folder.
+Finally, you should move the osmosisd binary into the cosmovisor/genesis folder.
 ```
-cp $GOPATH/bin/osmosisd ~/.osmosisd/cosmovisor/genesis/bin
+mv $GOPATH/bin/osmosisd ~/.osmosisd/cosmovisor/genesis/bin
 ```
-
-This will create a new `.osmosisd` folder in your HOME directory.
 
 ### Download Genesis File
 
