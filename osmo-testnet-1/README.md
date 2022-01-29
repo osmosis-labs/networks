@@ -9,7 +9,7 @@ Persistent Peers
 RPC
 * http://165.227.122.46:26657/
 
-Must use v6.2.0 or higher
+Must use v6.2.0
 
 # Guide (osmo-testnet-1)
 
@@ -32,6 +32,7 @@ tar -xjf genesis.tar.bz2 && rm genesis.tar.bz2
 ```
 
 Modify the config.toml
+
 Set up statesync by modifying the RPCs, TRUST_HEIGHT, and TRUST_HASH
 
 RPCs = "165.227.122.46:26657,165.227.122.46:26657"
