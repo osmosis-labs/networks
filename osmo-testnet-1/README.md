@@ -35,10 +35,10 @@ Modify the config.toml
 
 Set up statesync by modifying the RPCs, TRUST_HEIGHT, and TRUST_HASH
 
-RPCs = "165.227.122.46:26657,165.227.122.46:26657"
-LATEST_HEIGHT = curl -s http://osmo-sync.blockpane.com:26657/block | jq -r .result.block.header.height
-TRUST_HEIGHT = LATEST_HEIGHT - 1000
-TRUST_HASH = curl -s http://osmo-sync.blockpane.com:26657/block?height=TRUST_HEIGHT | jq -r .result.block_id.hash
+- RPCs = "165.227.122.46:26657,165.227.122.46:26657"
+- LATEST_HEIGHT = curl -s http://osmo-sync.blockpane.com:26657/block | jq -r .result.block.header.height
+- TRUST_HEIGHT = LATEST_HEIGHT - 1000
+- TRUST_HASH = curl -s http://osmo-sync.blockpane.com:26657/block?height=TRUST_HEIGHT | jq -r .result.block_id.hash
 
 Add the seed node
 ```
