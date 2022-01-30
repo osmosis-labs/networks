@@ -13,7 +13,9 @@ Must use v6.2.0
 
 # Statesync Guide (osmo-testnet-1)
 
-This guide will show you how to statesync to the new testnet. While you can sync from genesis, a current tendermint peer bug will make this process more painful than it should be, so we therefore recommend using statesync. This guide will not go extremely in depth as a majority of this is covered in https://docs.osmosis.zone
+This guide will show you how to statesync to the new testnet. This guide will not go extremely in depth as a majority of this is covered in https://docs.osmosis.zone
+
+Clone the osmosis repo and install v6.2.0
 
 ```
 git clone https://github.com/osmosis-labs/osmosis.git
@@ -21,8 +23,7 @@ git checkout v6.2.0
 make install
 ```
 
-reload terminal
-set up testnet genesis
+Set up testnet genesis
 
 ```
 osmosisd init NODENAME --chain-id osmo-testnet-1
@@ -31,9 +32,7 @@ wget https://github.com/osmosis-labs/networks/raw/adam/v2testnet/osmo-testnet-1/
 tar -xjf genesis.tar.bz2 && rm genesis.tar.bz2
 ```
 
-Modify the config.toml
-
-Set up statesync by modifying the RPCs, TRUST_HEIGHT, and TRUST_HASH
+Set up statesync by modifying the RPCs, TRUST_HEIGHT, and TRUST_HASH in the config.toml
 
 - RPCs = "165.227.122.46:26657,165.227.122.46:26657"
 - LATEST_HEIGHT = curl -s http://165.227.122.46:26657/block | jq -r .result.block.header.height
@@ -50,9 +49,39 @@ Add the persistent peers
 edd2b4968f012148641205b8ddd29f1beae8ab09@68.183.153.16:26656,e159391f00e8127d8e6ec1319b04633ffc33ed1a@165.227.122.46:26656
 ```
 
-then start the daemon with
+Then start the daemon with
+
 ```
 osmosisd start
 ```
 
 no patch needed, you will then be syncing blocks!
+
+# Sync From Genesis Guide (osmo-testnet-1)
+
+This guide will show you how to sync from genesis to the new testnet. PLEASE NOTE, you will have to get through a tendermint peer bug that might make this process take longer than it normally would. If you need all transaction data, it is recommended to download an archive snapshot from ChainLayer instead. This guide will not go extremely in depth as a majority of this is covered in https://docs.osmosis.zone
+
+Clone the osmosis repo and install v6.2.0
+
+```
+git clone https://github.com/osmosis-labs/osmosis.git
+git checkout v6.2.0
+make install
+```
+
+Set up testnet genesis
+
+```
+osmosisd init NODENAME --chain-id osmo-testnet-1
+cd ~/.osmosis/config/
+wget https://github.com/osmosis-labs/networks/raw/adam/v2testnet/osmo-testnet-1/genesis.tar.bz2
+tar -xjf genesis.tar.bz2 && rm genesis.tar.bz2
+```
+
+Start osmosisd with --x-crisis-skip-assert-invariants flag.
+
+```
+osmosisd start --x-crisis-skip-assert-invariants
+```
+
+You only need to use this flag once. After the genesis has been initialized, you will then run into the peer bug. Your daemon will run the first block and then get stuck searching for peers. This can take an hour or more. After an hour or so, you will then sync blocks. If you cancel this process before finding two or more blocks, you will have to use `osmosisd unsafe-reset-all` and then start with the skip assert inveriants flag again. After finding two or more blocks you are in the clear. You can cancel the daemon at any point you want and simply use `osmosisd start` to get it running again.
