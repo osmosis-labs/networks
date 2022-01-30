@@ -11,7 +11,7 @@ RPC
 
 Must use v6.2.0
 
-# Guide (osmo-testnet-1)
+# Statesync Guide (osmo-testnet-1)
 
 This guide will show you how to statesync to the new testnet. While you can sync from genesis, a current tendermint peer bug will make this process more painful than it should be, so we therefore recommend using statesync. This guide will not go extremely in depth as a majority of this is covered in https://docs.osmosis.zone
 
