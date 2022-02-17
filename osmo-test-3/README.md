@@ -27,8 +27,8 @@ Set up testnet genesis
 
 ```
 osmosisd init NODENAME --chain-id osmo-test-3
-cd ~/.osmosis/config/
-wget https://github.com/osmosis-labs/networks/raw/adam/osmo-test-3/osmo-test-3/genesis.tar.bz2 
+cd ~/.osmosisd/config/
+wget https://github.com/osmosis-labs/networks/raw/adam/osmo-test-3/osmo-test-3/genesis.tar.bz2
 tar -xjf genesis.tar.bz2 && rm genesis.tar.bz2
 ```
 
@@ -73,8 +73,8 @@ Set up testnet genesis
 
 ```
 osmosisd init NODENAME --chain-id osmo-test-3
-cd ~/.osmosis/config/
-wget https://github.com/osmosis-labs/networks/raw/adam/v2testnet/osmo-test-3/genesis.tar.bz2 
+cd ~/.osmosisd/config/
+wget https://github.com/osmosis-labs/networks/raw/adam/osmo-test-3/osmo-test-3/genesis.tar.bz2
 tar -xjf genesis.tar.bz2 && rm genesis.tar.bz2
 ```
 
