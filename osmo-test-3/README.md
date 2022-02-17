@@ -1,6 +1,6 @@
-# Quick Reference - osmo-test-3
+# Quick Reference - (osmo-test-3)
 Seed
-* 
+* 0f9a9c694c46bd28ad9ad6126e923993fc6c56b1@137.184.181.105:26656
 
 Persistent Peers
 * 4ab030b7fd75ed895c48bcc899b99c17a396736b@137.184.190.127:26656
@@ -9,7 +9,7 @@ Persistent Peers
 RPC
 * http://143.198.139.33:26657/
 
-DO NOT USE 6.2.0
+DO NOT USE v6.2.0
 
 # Statesync Guide (osmo-test-3)
 
@@ -41,7 +41,7 @@ Set up statesync by modifying the RPCs, TRUST_HEIGHT, and TRUST_HASH in the conf
 
 Add the seed node
 ```
-f5051996db0e0df69c55c36977407a9b8f94edb4@159.203.100.232:26656 
+0f9a9c694c46bd28ad9ad6126e923993fc6c56b1@137.184.181.105:26656
 ```
 
 Add the persistent peers
