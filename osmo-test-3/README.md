@@ -11,51 +11,9 @@ RPC
 
 DO NOT USE v6.2.0
 
-# Statesync Guide (osmo-test-3)
+# Bash Installer
 
-This guide will show you how to statesync to the new testnet. This guide will not go extremely in depth as a majority of this is covered in https://docs.osmosis.zone
-
-Clone the osmosis repo and install v6.3.1
-
-```
-git clone https://github.com/osmosis-labs/osmosis.git
-git checkout v6.3.1
-make install
-```
-
-Set up testnet genesis
-
-```
-osmosisd init NODENAME --chain-id osmo-test-3
-cd ~/.osmosisd/config/
-wget https://github.com/osmosis-labs/networks/raw/adam/osmo-test-3/osmo-test-3/genesis.tar.bz2
-tar -xjf genesis.tar.bz2 && rm genesis.tar.bz2
-```
-
-Set up statesync by modifying the RPCs, TRUST_HEIGHT, and TRUST_HASH in the config.toml
-
-- RPCs = "143.198.139.33:26657,143.198.139.33:26657"
-- LATEST_HEIGHT = curl -s http://143.198.139.33:26657/block | jq -r .result.block.header.height
-- TRUST_HEIGHT = LATEST_HEIGHT - 2000
-- TRUST_HASH = curl -s http://143.198.139.33:26657/block?height=TRUST_HEIGHT | jq -r .result.block_id.hash
-
-Add the seed node
-```
-0f9a9c694c46bd28ad9ad6126e923993fc6c56b1@137.184.181.105:26656
-```
-
-Add the persistent peers
-```
-4ab030b7fd75ed895c48bcc899b99c17a396736b@137.184.190.127:26656,3dbffa30baab16cc8597df02945dcee0aa0a4581@143.198.139.33:26656
-```
-
-Then start the daemon with
-
-```
-osmosisd start
-```
-
-no patch needed, you will then be syncing blocks!
+Simply run the bash installer at https://get.osmosis.zone and follow the on screen instructions for `osmo-test-3`
 
 # Sync From Genesis Guide (osmo-test-3)
 
