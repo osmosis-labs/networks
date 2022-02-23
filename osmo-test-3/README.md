@@ -7,7 +7,14 @@ Persistent Peers
 * 3dbffa30baab16cc8597df02945dcee0aa0a4581@143.198.139.33:26656
 
 RPC
-* http://143.198.139.33:26657/
+* https://rpc.osmo-test.ccvalidators.com/ (hosted by CryptoCrew)
+* https://osmosistest-rpc.quickapi.com/ (hosted by ChainLayer)
+* https://testnet-rpc.osmosis.zone
+
+LCD
+* https://osmosistest-lcd.quickapi.com/ (hosted by ChainLayer)
+* https://lcd.osmo-test.ccvalidators.com/ (hosted by CryptoCrew)
+* https://testnet-rest.osmosis.zone
 
 DO NOT USE v6.2.0
 
@@ -19,11 +26,11 @@ Simply run the bash installer at https://get.osmosis.zone and follow the on scre
 
 This guide will show you how to sync from genesis to the new testnet. PLEASE NOTE, the first block may take a while (up to an hour) to get passed. If you need all transaction data, it is recommended to download an archive snapshot from ChainLayer instead. This guide will not go extremely in depth as a majority of this is covered in https://docs.osmosis.zone
 
-Clone the osmosis repo and install v6.3.1
+Clone the osmosis repo and install v6.4.0
 
 ```
 git clone https://github.com/osmosis-labs/osmosis.git
-git checkout v6.3.1
+git checkout v6.4.0
 make install
 ```
 
