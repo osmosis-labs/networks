@@ -62,3 +62,19 @@ osmosisd start --x-crisis-skip-assert-invariants
 ```
 
 You only need to use this flag once. Your daemon will run the first block and then get stuck searching for peers. This can take an hour or more. After an hour or so, you will then sync blocks. If you cancel this process before finding two or more blocks, you will have to use `osmosisd unsafe-reset-all` and then start with the skip assert invariants flag again. After finding two or more blocks you are in the clear. You can cancel the daemon at any point you want and simply use `osmosisd start` to get it running again.
+
+# Set up Cosmovisor
+
+To set up cosmovisor for an automatic upgrade from v6 to v7 at block height 3215657:
+
+```sh
+mkdir -p ~/.osmosisd/cosmovisor/upgrades/v7/bin
+cd $HOME/osmosis
+git pull
+git checkout v7.0.1
+make build
+systemctl stop cosmovisor.service
+cp build/osmosisd ~/.osmosisd/cosmovisor/upgrades/v7/bin
+systemctl start cosmovisor.service
+cd $HOME
+```
