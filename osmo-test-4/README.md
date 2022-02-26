@@ -43,6 +43,18 @@ wget https://github.com/osmosis-labs/networks/raw/main/osmo-test-4/genesis.tar.b
 tar -xjf genesis.tar.bz2 && rm genesis.tar.bz2
 ```
 
+Edit the config.toml:
+
+Add the seed node
+```
+0f9a9c694c46bd28ad9ad6126e923993fc6c56b1@137.184.181.105:26656
+```
+
+Add the persistent peers
+```
+4ab030b7fd75ed895c48bcc899b99c17a396736b@137.184.190.127:26656,3dbffa30baab16cc8597df02945dcee0aa0a4581@143.198.139.33:26656
+```
+
 Start osmosisd with --x-crisis-skip-assert-invariants flag.
 
 ```
