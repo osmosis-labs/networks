@@ -71,7 +71,7 @@ To set up cosmovisor for an automatic upgrade from v6 to v7 at block height 3215
 mkdir -p ~/.osmosisd/cosmovisor/upgrades/v7/bin
 cd $HOME/osmosis
 git pull
-git checkout v7.0.1
+git checkout v7.0.2
 make build
 systemctl stop cosmovisor.service
 cp build/osmosisd ~/.osmosisd/cosmovisor/upgrades/v7/bin
